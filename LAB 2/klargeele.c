@@ -24,7 +24,6 @@ void main()
         if (x == k)
         {
             printf("%d", max);
-            return; 
         }
         for (i = t; i < n - 1; i++)
         {
