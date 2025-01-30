@@ -1,0 +1,54 @@
+#include<stdio.h>
+void main()
+{
+    int i,j,a[100][100],n,m,sum,k,c,b[100][100],u[100],temp,x=0;
+    scanf("%d%d",&n,&m);
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<m;j++)
+        {
+            scanf("%d",&a[i][j]);
+            b[i][j]=a[i][j];
+        }
+    }
+    for(i=0;i<n-2;i++)
+    {
+        for(j=0;j<n-2;j++)
+        {sum=0;
+            for(k=0;k<3;k++)
+            {
+                for(c=0;c<3;c++)
+                {
+                    u[x]=a[i+k][j+c];
+                    x++;
+                }
+            }
+           
+    for(i=0;i<3;i++)
+    {
+        for(j=0;j<3;j++)
+        {
+            if(u[i]<u[j])
+            {
+                temp=u[i];
+                u[i]=u[j];
+                u[j]=temp;
+            }
+        }
+    }
+            b[i+1][j+1]=u[3];
+             if(x==8)
+            {
+                x=0;
+            }
+        }
+    }
+       for(i=0;i<n;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+            printf("%d ",b[i][j]);
+        }
+        printf("\n");
+    }
+}
