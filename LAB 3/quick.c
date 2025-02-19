@@ -3,7 +3,8 @@
 int quicksort(int a[], int l, int h)
 {
     int si = l, ei = h, temp;
-    int pivot = a[si];
+    int pivot = a[l];
+
     while (si < ei)
     {
         while (a[si] <= pivot && si < h)
@@ -21,12 +22,13 @@ int quicksort(int a[], int l, int h)
             a[ei] = temp;
         }
     }
-    temp = a[ei];
-    a[ei] = pivot;
-    a[si] = temp;
+    temp = a[l];
+    a[l] = a[ei];
+    a[ei] = temp;
 
     return ei;
 }
+
 void quick(int a[], int l, int h)
 {
     if (l < h)
@@ -54,5 +56,7 @@ int main()
     {
         printf("%d ", a[i]);
     }
+    printf("\n");
     return 0;
 }
+
