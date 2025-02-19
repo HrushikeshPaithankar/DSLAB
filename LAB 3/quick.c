@@ -1,36 +1,58 @@
 #include <stdio.h>
 
-int main() {
-    int arr[] = {10, 7, 8, 9, 1, 5, 7}; 
-    int n = 7;  
-    int i, j, pivot, temp;
-    int count = 0; 
-    for (i = 0; i < n - 1; i++) {
-        pivot = arr[n - 1];  
-        j = i - 1;
-        
-        for (int k = i; k < n - 1; k++) {
-            if (arr[k] <= pivot) {
-                j++;
-                temp = arr[j];
-                arr[j] = arr[k];
-                arr[k] = temp;
-            }
+int quicksort(int a[], int l, int h)
+{
+    int si = l, ei = h, temp;
+    int pivot = a[si];
+    while (si < ei)
+    {
+        while (a[si] <= pivot && si < h)
+        {
+            si++;
         }
-        temp = arr[j + 1];
-        arr[j + 1] = arr[n - 1];
-        arr[n - 1] = temp;
-        for (int x = 0; x < n; x++) {
-            if (arr[x] == pivot) {
-                count++;
-            }
+        while (a[ei] > pivot && ei > l)
+        {
+            ei--;
+        }
+        if (si < ei)
+        {
+            temp = a[si];
+            a[si] = a[ei];
+            a[ei] = temp;
         }
     }
-    printf("Sorted array: ");
-    for (i = 0; i < n; i++) {
-        printf("%d ", arr[i]);
-    }
-    printf("\n%d",count);
+    temp = a[ei];
+    a[ei] = pivot;
+    a[si] = temp;
 
+    return ei;
+}
+void quick(int a[], int l, int h)
+{
+    if (l < h)
+    {
+        int pos = quicksort(a, l, h);
+        quick(a, l, pos - 1);
+        quick(a, pos + 1, h);
+    }
+}
+int main()
+{
+    int a[100], i, n, l, h;
+    printf("Enter the size of the array: ");
+    scanf("%d", &n);
+    l = 0;
+    h = n - 1;
+    printf("Enter the elements of the array: ");
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", &a[i]);
+    }
+    quick(a, l, h);
+    printf("Sorted array: ");
+    for (i = 0; i < n; i++)
+    {
+        printf("%d ", a[i]);
+    }
     return 0;
 }
