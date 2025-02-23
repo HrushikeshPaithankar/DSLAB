@@ -28,16 +28,24 @@ int main() {
             k = l;  
             while (i < mid && j < h) {
                 if (arr[i] <= arr[j]) {
-                    temp[k++] = arr[i++];
+                    temp[k] = arr[i];
+                    i++;
+                    k++;
                 } else {
-                    temp[k++] = arr[j++];
+                    temp[k] = arr[j];
+                    j++;
+                    k++;
                 }
             }
             while (i < mid) {
-                temp[k++] = arr[i++];
+                temp[k] = arr[i];
+                i++;
+                k++;
             }
             while (j < h) {
-                temp[k++] = arr[j++];
+                temp[k] = arr[j];
+                j++;
+                k++;
             }
             for (i = l; i < h; i++) {
                 arr[i] = temp[i];
